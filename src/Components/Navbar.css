@@ -1,0 +1,33 @@
+.navbar{
+    height: 11vh;
+    background-color: lightskyblue;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    display: flex;
+}
+
+.navbar h2{
+    margin-left: 1rem;
+    font-weight: normal;
+    position: absolute;
+    color: black;
+    text-decoration: none;  
+}
+
+.cart{
+   position: absolute;
+   right: 5rem;
+   display: flex;
+
+}
+
+.cart h3{
+    font-weight: normal;
+    color: black;
+}
+
+img{
+    height: 5vh;
+    width: 2vw;
+    margin-top: 1rem;
+    position: relative;
+}
