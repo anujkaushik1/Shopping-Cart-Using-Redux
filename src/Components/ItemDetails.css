@@ -1,3 +1,29 @@
-.itemdetails-img{
-    git add 
+.imagedetails-main{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
 }
+
+.imagedetails-img{
+    height: 50%;
+    width: 30%;
+    margin-top: 2rem;
+}
+
+.imagedetails-img img{
+    height: 100%;
+    width: 100%;
+}
+
+.itemdetails-alldetails{
+    position: relative;
+    width: 50%;
+    top: 2rem;
+    left: 20rem;
+}
+
+.itemdetails-alldetails h1{
+    margin: 0;
+}
+
+
