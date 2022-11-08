@@ -1,0 +1,36 @@
+.card-items{
+    width: 24vw;
+    height: 80vh;
+    margin: 2rem;
+    
+}
+
+.items-img{
+    height: 30vh;
+    width: 100%;
+    margin: 0;
+}
+
+.items-desc{
+    margin: 1rem;
+    letter-spacing: 0.01071em;
+    font-weight: 600;
+    line-height: 1.43;
+    margin-top: -0.6rem;
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.items-button{
+    display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.items-button button{
+    cursor: pointer;
+    background : none;
+    font-size: 0.95rem;
+    color: #3f51b5;
+    border: none;
+}

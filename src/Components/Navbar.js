@@ -7,11 +7,11 @@ function Navbar() {
     return (
         <>
             <nav className='navbar'>
-                <Link to="/helloo"  >
+                <Link to="/"  >
                     <h2>Redux Shopping</h2>
                 </Link>
 
-                <Link to='/kaushik' style={{textDecoration : 'none'}}>
+                <Link to='/cart' style={{textDecoration : 'none'}}>
                     <div className='cart'>
                         <h3>Cart</h3>
                         <img src="https://www.freeiconspng.com/thumbs/cart-icon/basket-cart-icon-27.png" alt="jajajajaj" />
