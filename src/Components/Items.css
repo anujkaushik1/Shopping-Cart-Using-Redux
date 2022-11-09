@@ -2,6 +2,7 @@
     width: 24vw;
     height: 80vh;
     margin: 2rem;
+    overflow: hidden;
     
 }
 
@@ -23,8 +24,7 @@
 
 .items-button{
     display: flex;
-    justify-content: center;
-    margin: 1rem;
+    justify-content: center;    
 }
 
 .items-button button{

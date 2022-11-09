@@ -14,6 +14,10 @@ function Items() {
 
   } 
 
+  const addToCart = ()=> {
+    navigate('/cart');
+  }
+
   useEffect(() => {
 
     if (shopItems) {
@@ -38,7 +42,7 @@ function Items() {
 
                 <div className='items-button'>
                   <button onClick={()=>viewItemClick(item, idx)}>VIEW ITEM</button>
-                  <button>ADD TO CART</button>
+                  <button onClick={()=> addToCart()}>ADD TO CART</button>
                 </div>
 
               </div>
