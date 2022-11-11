@@ -1,9 +1,10 @@
 import { shopItems } from "../Components/getItems";
 
 let item = shopItems.data[0];
+let item1 = shopItems.data[1];
 
 const initalState = {
-    value : item
+    value : {item, item1}
 }
 
 const CartReducer = (state = initalState, action)=>{

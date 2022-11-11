@@ -6,7 +6,8 @@
     height: 60vh;
     width: 60%;
     background-color: white;
-    margin: 5rem
+    margin: 5rem;
+    overflow: auto;
 }
 
 .cart-title > h4 {
