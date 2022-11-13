@@ -27,8 +27,8 @@ function Cart(props) {
       newArr.map((e)=>{
           price += e.price * e.count;
       })
-    
-
+      
+      setTotalPrice(price);
     }
 
   }, [props.anuj]);
@@ -94,7 +94,7 @@ function Cart(props) {
           <h4 style={{ fontWeight: '500' }}>Cart Summary</h4>
 
           <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <h5 style={{ margin: '0' }}>Subtotal : <span style={{ fontWeight: '500' }}>₹ { }</span> </h5>
+            <h5 style={{ margin: '0' }}>Subtotal : {totalPrice} <span style={{ fontWeight: '500' }}>₹ { }</span> </h5>
           </div>
 
           <div style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem', position: 'relative', width: '100%', marginTop: '1rem' }}>
