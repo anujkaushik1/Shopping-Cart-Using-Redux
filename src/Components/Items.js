@@ -29,6 +29,8 @@ function Items({addCart}) {
       setItems(shopItems);
     }
 
+    
+
   }, [])
 
 

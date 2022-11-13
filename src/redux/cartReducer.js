@@ -5,8 +5,9 @@ const initalState = {
 
 const CartReducer = (state = initalState, action) => {
     switch (action.type) {
+        
         case 'ADD_ITEMS':
-            let item = action.payload;
+            const item = action.payload;
             item.count = 1;
             let arr = [...state.value];
             
@@ -31,7 +32,7 @@ const CartReducer = (state = initalState, action) => {
                 else{
                     
                     let newArr = [...state.value];
-                    newArr.forEach((e, idx)=> {
+                    newArr.find((e, idx)=> {
                         if(e.id === item.id){
                             let res = [...state.value][idx]
                             res.count += 1;
@@ -45,11 +46,26 @@ const CartReducer = (state = initalState, action) => {
 
                         }
                     })
+
+                    console.log(state);
                 }
             }     
 
             return state;
+        
+        case 'DELETE_ITEM':
+            const item1 = action.payload;
+            
+            let res = [...state.value].filter((e)=> {
+                return e.id !== item1.id
+            })
 
+            state = {
+                ...state,
+                value : [...res]
+            }
+
+            
         default:
             return state
     }
