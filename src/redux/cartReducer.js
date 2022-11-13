@@ -9,24 +9,23 @@ const CartReducer = (state = initalState, action) => {
             let item = action.payload;
             let arr = [...state.value];
             
-            if(arr.length === 0){
+            // arr = [ {id : 1, Name : 'a} ]
+            // item = {id : 1, Name : 'a'}
+
+            let isItemExist = arr.find((e)=> e.id === item.id)
+
+            // isItemExist = {id : 1, Name : 'a'}
+
+            console.log(isItemExist);
+
+            // arr.forEach((e)=> {   // shi appraoch hai
+            //     if(e.id === item.id) isItemExist = true  
+            // })
+
+            if(!isItemExist){
                 state = {
                     ...state,
-                    value : [...state.value, item]
-                }
-            }
-            else{
-                let bool = false;
-                
-                arr.forEach((e)=> {
-                    if(e.id === item.id) bool = true
-                })
-               
-                if(!bool){
-                    state = {
-                        ...state,
-                        value : [...state.value, item]  
-                    }
+                    value : [...state.value, item]  
                 }
             }     
 
