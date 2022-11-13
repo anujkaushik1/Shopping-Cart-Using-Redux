@@ -1,17 +1,38 @@
-import { shopItems } from "../Components/getItems";
-
-let item = shopItems.data[0];
-let item1 = shopItems.data[1];
 
 const initalState = {
-    value : {item, item1}
+    value: []
 }
 
-const CartReducer = (state = initalState, action)=>{
-    switch(action.type){
-        case 'GET_ITEMS':
-            return {...state, value : state.value - 1}
-        default :
+const CartReducer = (state = initalState, action) => {
+    switch (action.type) {
+        case 'ADD_ITEMS':
+            let item = action.payload;
+            let arr = [...state.value];
+            
+            if(arr.length === 0){
+                state = {
+                    ...state,
+                    value : [...state.value, item]
+                }
+            }
+            else{
+                let bool = false;
+                
+                arr.forEach((e)=> {
+                    if(e.id === item.id) bool = true
+                })
+               
+                if(!bool){
+                    state = {
+                        ...state,
+                        value : [...state.value, item]  
+                    }
+                }
+            }     
+
+            return state;
+
+        default:
             return state
     }
 }

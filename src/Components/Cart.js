@@ -14,13 +14,8 @@ function Cart(props) {
     if (props.anuj) {
 
       let newArr = [];
-
-      for (var key in props.anuj) {
-        newArr.push(props.anuj[key]);
-      }
-
+      newArr = [...props.anuj];
       setCartItems(newArr);
-      console.log(newArr[0]);
 
     }
 
@@ -81,8 +76,28 @@ function Cart(props) {
               </div>
             ))
           }
+        </div>
 
+        <div className="cart-summary">
+          <h4 style={{ fontWeight: '500' }}>Cart Summary</h4>
 
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <h5 style={{ margin: '0' }}>Subtotal : <span style={{ fontWeight: '500' }}>₹ { }</span> </h5>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem', position: 'relative', width: '100%', marginTop: '1rem' }}>
+            <label htmlFor="fname" style={{ position: 'relative', marginLeft: '1rem', border: 'none' }}>Enter Code : </label>
+          </div>
+          <div style={{ display: 'flex', position: 'relative', width: '100%' }}>
+            <input style={{ width: 'fit-content', height: 'fit-content', position: 'relative', marginLeft: '1rem' }} id="fname" name="fname" type="text" />
+            <button style={{ height: '8vh', width: '5vw', marginTop: '-1.5rem', marginLeft: '1.3rem', backgroundColor: 'white', borderColor: 'lightgray', boxShadow: 'none', cursor: 'pointer' }}>
+              <span>APPLY</span>
+            </button>
+          </div>
+
+          <button style={{ backgroundColor: '#3f51b5', marginTop: '1rem', height: '6vh', width: '12vw', borderRadius: '8px', borderColor: 'white', cursor: 'pointer' }}>
+            <span style={{ color: 'white', fontWeight: '400' }}>PROCEED TO PAY</span>
+          </button>
 
         </div>
 

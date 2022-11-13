@@ -4,7 +4,7 @@
 
 .shopping-cart {
     height: 60vh;
-    width: 60%;
+    width: 64%;
     background-color: white;
     margin: 5rem;
     overflow: auto;
@@ -18,8 +18,8 @@
 .cart-title hr {
     height: 1px;
     /* border-width: 0; */
-    color: black;
-    background-color: black;
+    color: lightgray;
+    background-color: lightgray;
     margin: 0;
 }
 
@@ -46,4 +46,16 @@
     padding: 0;
     font-weight: bold;
     color: #0984e3;
+}
+
+.cart-summary{
+    height: 35vh;
+    width: 24%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 5rem;
+    border-radius: 20px;
+    background-color: white;
 }

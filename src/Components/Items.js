@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { connect } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { shopItems } from './getItems'
 import './Items.css'
 
-function Items() {
+
+function Items({addCart}) {
 
   const [items, setItems] = useState(null);
   const navigate = useNavigate();
@@ -14,7 +16,10 @@ function Items() {
 
   } 
 
-  const addToCart = ()=> {
+  const addToCart = (item)=> {
+
+
+    addCart(item);
     navigate('/cart');
   }
 
@@ -42,7 +47,7 @@ function Items() {
 
                 <div className='items-button'>
                   <button onClick={()=>viewItemClick(item, idx)}>VIEW ITEM</button>
-                  <button onClick={()=> addToCart()}>ADD TO CART</button>
+                  <button onClick={()=> addToCart(item)}>ADD TO CART</button>
                 </div>
 
               </div>
@@ -55,4 +60,10 @@ function Items() {
   )
 }
 
-export default Items
+const mapDispatchToProps = (dispatch) => {
+  return {
+      addCart : (item) => dispatch({type : 'ADD_ITEMS', payload : item})
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Items);
