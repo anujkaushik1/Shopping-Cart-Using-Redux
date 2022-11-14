@@ -14,6 +14,7 @@ function Cart(props) {
   const [couponDisplay, setCouponDisplay] = useState('none')
   const [enterCode, setEnterCode] = useState('');
   const [couponPercent, setCouponPercent] = useState(null);
+  const [btnDisabled, setBtnDisabled] = useState(false);
 
 
   const styles = {
@@ -61,8 +62,8 @@ function Cart(props) {
 
   const applyCode = () => {
 
-    if (enterCode === '') {
-      alert('Please enter coupon first');
+    if (enterCode === '' || totalPrice === 0) {
+      alert('Please enter coupon or add item first ');
       return;
     }
 
@@ -70,11 +71,23 @@ function Cart(props) {
       if (key === enterCode) {
         setCouponPercent(coupons[key])
         setCouponDisplay('flex')
+
+        discountPrice(coupons[key])
+
+        setBtnDisabled(true)
+
         return;
       }
     }
 
-    console.log(styles);
+    alert('The Coupon is no longer available')
+
+  }
+
+  const discountPrice = (num) => {
+
+      let amount = totalPrice * (num / 100);
+      setTotalPrice(amount)
 
   }
 
@@ -118,7 +131,7 @@ function Cart(props) {
 
                   <div style={{ display: 'flex', marginLeft: '1rem' }}>
                     <span style={{ fontWeight: '480', fontSize: '1.1rem' }}>Qty</span>
-                    <input value={item.count} onChange={(e) => incQuantity(e, item)} style={{ marginLeft: '0.5rem', width: '8%', height: '1.5rem', marginTop: '0.2rem' }} type="number" />
+                    <input disabled = {btnDisabled ? true : false} value={item.count} onChange={(e) => incQuantity(e, item)} style={{ marginLeft: '0.5rem', width: '8%', height: '1.5rem', marginTop: '0.2rem' }} type="number" />
                   </div>
 
                   <p style={{ maxHeight: '20vh', overflow: 'auto', margin: '0', maxWidth: '40vw', margin: '1.5rem 1rem 0 1rem' }}>
@@ -163,7 +176,7 @@ function Cart(props) {
           </div>
           <div style={{ display: 'flex', position: 'relative', width: '100%' }}>
             <input value={enterCode} onChange={(e) => setEnterCode(e.target.value)} style={{ width: 'fit-content', height: 'fit-content', position: 'relative', marginLeft: '1rem' }} id="fname" name="fname" type="text" />
-            <button onClick={applyCode} style={{ height: '8vh', width: '5vw', marginTop: '-1.5rem', marginLeft: '1.3rem', backgroundColor: 'white', borderColor: 'lightgray', boxShadow: 'none', cursor: 'pointer' }}>
+            <button disabled = {btnDisabled ? true : false} onClick={applyCode} style={{ height: '8vh', width: '5vw', marginTop: '-1.5rem', marginLeft: '1.3rem', backgroundColor: 'white', borderColor: 'lightgray', boxShadow: 'none', cursor: 'pointer' }}>
               <span>APPLY</span>
             </button>
           </div>
