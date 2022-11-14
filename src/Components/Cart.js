@@ -4,11 +4,29 @@ import Helmet from 'react-helmet';
 import './Cart.css'
 import { shopItems } from './getItems';
 import './ItemDetails.css'
+import { coupons } from './getCoupons';
+
 
 function Cart(props) {
 
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(null);
+  const [couponDisplay, setCouponDisplay] = useState('none')
+  const [enterCode, setEnterCode] = useState('');
+  const [couponPercent, setCouponPercent] = useState(null);
+
+
+  const styles = {
+
+    couponDisplayStyle: {
+      display: couponDisplay,
+      position: 'relative',
+      width: '100%',
+      color: 'green',
+      fontWeight: '600'
+    }
+
+  }
 
   const deleteItemCart = (item) => {
     props.deleteItem(item);
@@ -17,7 +35,7 @@ function Cart(props) {
   const incQuantity = (e, item) => {
     let val = e.target.value;
     val = parseInt(val);
-    
+
     if (val < 1) {
       return;
     }
@@ -41,6 +59,25 @@ function Cart(props) {
     setTotalPrice(price);
   }
 
+  const applyCode = () => {
+
+    if (enterCode === '') {
+      alert('Please enter coupon first');
+      return;
+    }
+
+    for (const key of Object.keys(coupons)) {
+      if (key === enterCode) {
+        setCouponPercent(coupons[key])
+        setCouponDisplay('flex')
+        return;
+      }
+    }
+
+    console.log(styles);
+
+  }
+
   useEffect(() => {
 
     if (props.anuj) {
@@ -49,17 +86,16 @@ function Cart(props) {
       setCartItems(newArr);
 
       updateUICount();
-
     }
 
   }, [props.anuj]);
 
   return (
+
     <div >
       <Helmet>
         <style>{'body { background-color: #eeeeee }'}</style>
       </Helmet>
-
       <div className='cart-screen'>
 
         <div className='shopping-cart'>
@@ -118,12 +154,16 @@ function Cart(props) {
             <h5 style={{ margin: '0' }}>Subtotal : {totalPrice} <span style={{ fontWeight: '500' }}>₹ { }</span> </h5>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', marginTop: '1rem', position: 'relative', width: '100%', marginTop: '1rem' }}>
+          <div style={styles.couponDisplayStyle}>
+            <h5 htmlFor="fname" style={{ position: 'absolute', left: '1rem', border: 'none', margin: '0', fontWeight: '500' }}>Congratulations, you got {couponPercent} off !</h5>
+          </div>
+
+          <div style={{ display: 'flex', flexDirection: 'column', position: 'relative', width: '100%', marginTop: '2rem' }}>
             <label htmlFor="fname" style={{ position: 'relative', marginLeft: '1rem', border: 'none' }}>Enter Code : </label>
           </div>
           <div style={{ display: 'flex', position: 'relative', width: '100%' }}>
-            <input style={{ width: 'fit-content', height: 'fit-content', position: 'relative', marginLeft: '1rem' }} id="fname" name="fname" type="text" />
-            <button style={{ height: '8vh', width: '5vw', marginTop: '-1.5rem', marginLeft: '1.3rem', backgroundColor: 'white', borderColor: 'lightgray', boxShadow: 'none', cursor: 'pointer' }}>
+            <input value={enterCode} onChange={(e) => setEnterCode(e.target.value)} style={{ width: 'fit-content', height: 'fit-content', position: 'relative', marginLeft: '1rem' }} id="fname" name="fname" type="text" />
+            <button onClick={applyCode} style={{ height: '8vh', width: '5vw', marginTop: '-1.5rem', marginLeft: '1.3rem', backgroundColor: 'white', borderColor: 'lightgray', boxShadow: 'none', cursor: 'pointer' }}>
               <span>APPLY</span>
             </button>
           </div>

@@ -4,7 +4,6 @@ const initalState = {
 }
 
 const CartReducer = (state = initalState, action) => {
-    debugger;
     switch (action.type) {
         case 'ADD_ITEMS':
             const item = action.payload;
