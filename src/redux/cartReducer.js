@@ -4,8 +4,8 @@ const initalState = {
 }
 
 const CartReducer = (state = initalState, action) => {
+    debugger;
     switch (action.type) {
-        
         case 'ADD_ITEMS':
             const item = action.payload;
             item.count = 1;
@@ -65,7 +65,12 @@ const CartReducer = (state = initalState, action) => {
                 value : [...res]
             }
 
+        case 'INC_ITEM':
+            const item2 = action.payload;
             
+            console.log(item2);
+
+
         default:
             return state
     }

@@ -10,25 +10,46 @@ function Cart(props) {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(null);
 
-  const deleteItemCart = (item)=>{
+  const deleteItemCart = (item) => {
     props.deleteItem(item);
+  }
+
+  const incQuantity = (e, item) => {
+    let val = e.target.value;
+    val = parseInt(val);
+    
+    if (val < 1) {
+      return;
+    }
+
+    item.count = val;
+    props.incItem(item);
+
+    updateUICount();
+
+  }
+
+  const updateUICount = () => {
+    let newArr = [];
+    newArr = [...props.anuj];
+    let price = 0;
+
+    newArr.map((e) => {
+      price += e.price * e.count;
+    })
+
+    setTotalPrice(price);
   }
 
   useEffect(() => {
 
     if (props.anuj) {
-
       let newArr = [];
       newArr = [...props.anuj];
       setCartItems(newArr);
 
-      let price = 0;
+      updateUICount();
 
-      newArr.map((e)=>{
-          price += e.price * e.count;
-      })
-      
-      setTotalPrice(price);
     }
 
   }, [props.anuj]);
@@ -61,7 +82,7 @@ function Cart(props) {
 
                   <div style={{ display: 'flex', marginLeft: '1rem' }}>
                     <span style={{ fontWeight: '480', fontSize: '1.1rem' }}>Qty</span>
-                    <input style={{ marginLeft: '0.5rem', width: '8%', height: '1.5rem', marginTop: '0.2rem' }} type="number" />
+                    <input value={item.count} onChange={(e) => incQuantity(e, item)} style={{ marginLeft: '0.5rem', width: '8%', height: '1.5rem', marginTop: '0.2rem' }} type="number" />
                   </div>
 
                   <p style={{ maxHeight: '20vh', overflow: 'auto', margin: '0', maxWidth: '40vw', margin: '1.5rem 1rem 0 1rem' }}>
@@ -70,7 +91,7 @@ function Cart(props) {
 
                   <div style={{ display: 'flex' }}>
 
-                    <button onClick={()=> deleteItemCart(item)} className='itemdetails-button' style={{ backgroundColor: '#f50057', margin: '1rem', display: 'flex', position: 'relative', cursor : 'pointer' }}>
+                    <button onClick={() => deleteItemCart(item)} className='itemdetails-button' style={{ backgroundColor: '#f50057', margin: '1rem', display: 'flex', position: 'relative', cursor: 'pointer' }}>
                       <svg style={{ position: 'relative', left: '0.5rem' }} xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                         width="30" height="30"
                         viewBox="0 0 30 30">
@@ -127,7 +148,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-      deleteItem: (item) => dispatch({ type: 'DELETE_ITEM', payload: item })
+    incItem: (item) => dispatch({ type: 'INC_ITEM', payload: item }),
+    deleteItem: (item) => dispatch({ type: 'DELETE_ITEM', payload: item })
   }
 }
 
